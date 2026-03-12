@@ -1,20 +1,40 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"regexp"
+)
 
-func validatorFistDigit(cpf int) bool  {
-	var sum int 
-	println(sum)
 
-	for i := 0; i < 9; i++ {
-		// result :=
-	}
-//    sum += result * (10 - i)
-	// (sum * 10) % 11
-	return false
+func main() {
+
+	cpf := "529.982.247-25"
+	cleanCpf := regexp.MustCompile(`[^\d]+`).ReplaceAllString(cpf, "")
+	fmt.Println(cleanCpf)
 }
 
-func main()  {
-	fmt.Println("teste")
-	validatorFistDigit(52998224725)
-}
+// \d
+// \w
+// \s
+// []
+// [^]
+// +
+
+
+// func validatorFistDigit(cpf string) string {
+// 	// cpf = "529.982.247-25"
+// 	// fmt.Println(cpf)
+// 	// 	var sum int
+// 	// 	println(sum)
+
+// 	//	for i := 0; i < 9; i++ {
+// 	//		// result :=
+// 	//	}
+// 	//
+// 	// //    sum += result * (10 - i)
+// 	//
+// 	//	// (sum * 10) % 11
+// 	fmt.Println(cpf)
+// 	return cpf
+
+// }
