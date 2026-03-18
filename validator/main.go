@@ -1,31 +1,35 @@
 package main
 
 import (
-	
+	"fmt"
 	"regexp"
+	"strconv"
 )
 
 func validaCpf(cpf string) bool {
-	cleanCpf := regexp.MustCompile(`[^\d]+`).ReplaceAllString(cpf, "")
-
-	if len(cleanCpf) != 11 {
+	re := regexp.MustCompile(`[^\d]+`)
+	cpf = re.ReplaceAllString(cpf, "")
+	if len(cpf) != 11 {
 		return false
 	}
-
 	sum := 0
-	for i := 0; i < 9; i++ {
-		sum += int(cleanCpf[i]) * (10 - i)
-		// resto := (sum * 10) % 11
-		// fmt.Println(sum)
+	for i := range 9 {
+		digit, err := strconv.Atoi(string(cpf[i]))
+		if err != nil {
+			return false
+		}
+		sum += digit * (10 - i)
 	}
 
-	resto := (sum * 10) % 11
-
-	if resto < 10 {
-		return int(cleanCpf[9]) == resto
-	}
-
-	return int(cleanCpf[9]) == 0
+	// resto := (sum * 10) % 11
+	fmt.Println(sum)
+	// }
+	// resto := (sum * 10) % 11
+	// if resto < 10 {
+	// 	return int(cleanCpf[9]) == resto
+	// }
+	return true
+	//int(cleanCpf[9]) == 0
 }
 
 func main() {
