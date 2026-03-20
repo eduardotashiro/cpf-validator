@@ -12,6 +12,7 @@ func validaCpf(cpf string) bool {
 	if len(cpf) != 11 {
 		return false
 	}
+
 	sum := 0
 	for i := range 9 {
 		digit, err := strconv.Atoi(string(cpf[i]))
@@ -20,9 +21,16 @@ func validaCpf(cpf string) bool {
 		}
 		sum += digit * (10 - i)
 	}
+	r := (sum * 10) % 11
+	string(r)
+	if r == cpf[9]{
+
+	}
+
+
 
 	// resto := (sum * 10) % 11
-	fmt.Println(sum)
+	fmt.Println(sum) //295 :)
 	// }
 	// resto := (sum * 10) % 11
 	// if resto < 10 {
