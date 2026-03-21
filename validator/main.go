@@ -45,15 +45,31 @@ func validateCPF(c string) bool {
 	}
 
 	rest := (sum * 10) % 11
-	if rest < 10 {
-		return rest == int(cpf[9])
+	if rest == 10 {
+		rest = 0
 	}
-	return int(cpf[9] == 0)
 
+	firstDigit, err := strconv.Atoi(string(cpf[9]))
+	if err != nil {
+		return false
+	}
+
+	if rest != firstDigit {
+		return false
+	}
+
+	// cpf válido
+	return true
 }
 
 func main() {
-	//  529 982 247 25
-	cpf := "529.982.247-25"
-	validateCPF(cpf)
+	var cpf string
+	fmt.Println("Digite o CPF:")
+	fmt.Scan(&cpf)
+
+	if validateCPF(cpf) {
+		fmt.Println("CPF VÁLIDO")
+	} else {
+		fmt.Println("CPF INVÁLIDO")
+	}
 }
