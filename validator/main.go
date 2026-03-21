@@ -12,14 +12,6 @@ func removeCharacters(cleanCPF string) string {
 	return cpf
 }
 
-// func isRepetitive(repCPF string) string {
-// 	if len(repCPF) == 0 {
-// 		fmt.Printf("cpf : %s , vazio !!", repCPF)
-// 	}
-
-// 	return repCPF
-// }
-
 func validateCPF(c string) bool {
 	//remove caracteres como .(ponto) e -(traço)
 	cpf := removeCharacters(c)
@@ -55,6 +47,30 @@ func validateCPF(c string) bool {
 	}
 
 	if rest != firstDigit {
+		return false
+	}
+
+	//calculando o segundo dígito verificador
+	soma := 0
+	for i := range 10 {
+		digit, err := strconv.Atoi(string(cpf[i]))
+		if err != nil {
+			return false
+		}
+		soma += digit * (10 - i)
+	}
+
+	resto := (soma * 10) % 11
+	if resto == 10 {
+		resto = 0
+	}
+
+	secondDigit, err := strconv.Atoi(string(cpf[10]))
+	if err != nil {
+		return false
+	}
+
+	if rest != secondDigit {
 		return false
 	}
 
