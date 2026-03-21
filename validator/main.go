@@ -16,18 +16,25 @@ func removeCharacters(cleanCPF string) string {
 // 	if len(repCPF) == 0 {
 // 		fmt.Printf("cpf : %s , vazio !!", repCPF)
 // 	}
-// 	if repCPF[0] == repCPF[1] && repCPF[1] == repCPF[2] && repCPF[2] == repCPF[3] && repCPF[3] == repCPF[4] && repCPF[4] == repCPF[5] && repCPF[5] == repCPF[6] && repCPF[6] == repCPF[7] && repCPF[7] == repCPF[8] && repCPF[8] == repCPF[9] && repCPF[9] == repCPF[10] && repCPF[10] == repCPF[0] {
-// 		fmt.Printf("cpf : %s , não pode repetir os números !!", repCPF)
-// 	}
+
 // 	return repCPF
 // }
 
 func validateCPF(c string) bool {
+	//remove caracteres como .(ponto) e -(traço)
 	cpf := removeCharacters(c)
+
+	//verifica se o CPF digitado tem 11 digitos, pois ja removi . -
 	if len(cpf) != 11 {
 		return false
 	}
 
+	//verifica se todos os dígitos são iguais
+	if cpf[0] == cpf[1] && cpf[1] == cpf[2] && cpf[2] == cpf[3] && cpf[3] == cpf[4] && cpf[4] == cpf[5] && cpf[5] == cpf[6] && cpf[6] == cpf[7] && cpf[7] == cpf[8] && cpf[8] == cpf[9] && cpf[9] == cpf[10] && cpf[10] == cpf[0] {
+		return false
+	}
+
+	//calculando primeiro dígito verificador
 	sum := 0
 	for i := range 9 {
 		digit, err := strconv.Atoi(string(cpf[i]))
@@ -37,9 +44,9 @@ func validateCPF(c string) bool {
 		sum += digit * (10 - i)
 	}
 
-	rest1 := (sum * 10) % 11
-	if rest1 < 10 {
-		return rest1 == int(cpf[9])
+	rest := (sum * 10) % 11
+	if rest < 10 {
+		return rest == int(cpf[9])
 	}
 	return int(cpf[9] == 0)
 
