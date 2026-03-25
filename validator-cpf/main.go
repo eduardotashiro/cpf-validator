@@ -16,13 +16,23 @@ func validateCPF(c string) bool {
 	//remove caracteres como .(ponto) e -(traço)
 	cpf := removeCharacters(c)
 
-	//verifica se o CPF digitado tem 11 digitos, pois ja removi . -
+	//verifica se o CPF di//gitado tem 11 digitos, pois ja removi . -
 	if len(cpf) != 11 {
 		return false
 	}
 
 	//verifica se todos os dígitos são iguais
-	if cpf[0] == cpf[1] && cpf[1] == cpf[2] && cpf[2] == cpf[3] && cpf[3] == cpf[4] && cpf[4] == cpf[5] && cpf[5] == cpf[6] && cpf[6] == cpf[7] && cpf[7] == cpf[8] && cpf[8] == cpf[9] && cpf[9] == cpf[10] && cpf[10] == cpf[0] {
+	if  cpf[0]  == cpf[1] &&
+		cpf[1]  == cpf[2] &&
+		cpf[2]  == cpf[3] &&
+		cpf[3]  == cpf[4] &&
+		cpf[4]  == cpf[5] &&
+		cpf[5]  == cpf[6] &&
+		cpf[6]  == cpf[7] &&
+		cpf[7]  == cpf[8] &&
+		cpf[8]  == cpf[9] &&
+		cpf[9]  == cpf[10] &&
+		cpf[10] == cpf[0] {
 		return false
 	}
 
@@ -90,13 +100,11 @@ func main() {
 	}
 }
 
-//*                      ________  ________  ________ 
+//*                      ________  ________  ________
 //*                     |\   ____\|\   __  \|\  _____\
-//*                     \ \  \___|\ \  \|\  \ \  \__/ 
+//*                     \ \  \___|\ \  \|\  \ \  \__/
 //*                      \ \  \    \ \   ____\ \   __\
 //*                       \ \  \____\ \  \___|\ \  \_|
-//*                        \ \_______\ \__\    \ \__\ 
-//*                         \|_______|\|__|     \|__| 
-//*                                                  
-                               
-                              
+//*                        \ \_______\ \__\    \ \__\
+//*                         \|_______|\|__|     \|__|
+//*
