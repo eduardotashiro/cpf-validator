@@ -1,10 +1,16 @@
 package main
 
 import (
-	// "fmt"
 	"fmt"
 	"regexp"
 	// "strconv"
+)
+
+var (
+	cnpjd1 string
+	cnpjd2 string
+	cnpjP1 = []int{5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2}
+	cnpjP2 = []int{6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2}
 )
 
 func removeCharacters(cleanCNPJ string) string {
@@ -30,7 +36,10 @@ func validateCnpj(c string) bool {
 		}
 	}
 
-	// calcular aqui
+	//digito verificador
+	p1 := cnpj[12:]
+	p2 := cnpj[:12]
+	fmt.Println(p1, p2)
 
 	return true
 }
