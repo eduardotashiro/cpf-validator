@@ -1,6 +1,7 @@
 package main
 
 import (
+	// "fmt"
 	"fmt"
 	"regexp"
 	// "strconv"
@@ -10,13 +11,6 @@ func removeCharacters(cleanCNPJ string) string {
 	re := regexp.MustCompile(`[^\d]+`)
 	cnpj := re.ReplaceAllString(cleanCNPJ, "")
 	return cnpj
-}
-
-func reverse(str string) (result string) {
-	for _, v := range str {
-		result = string(v) + result
-	}
-	return
 }
 
 func validateCnpj(c string) bool {
@@ -42,10 +36,9 @@ func validateCnpj(c string) bool {
 }
 
 func main() {
-
 	var CNPJ string = "59.541.264/0001-03"
-	fmt.Println(CNPJ)
-	cnpjInv := reverse(CNPJ)
-	fmt.Println(cnpjInv)
-
+	var CNPJ2 string = "11.111.111/1111-11"
+	test := validateCnpj(CNPJ)
+	test2 := validateCnpj(CNPJ2)
+	fmt.Println(test, test2)
 }
